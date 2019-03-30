@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:complexType name="dodavanjeSmestaja">
+        <xs:sequence>
+            <xs:element name="tip" type="TtipSmestaja"/>
+            <xs:element name="adresa" type="Adresa"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="dodatneUsluge"
+                type="DodatneUsluge"/>
+            <xs:element name="agent" type="Agent"/>
+            <xs:element name="zauzetost" type="xs:boolean"/>
+            <xs:element name="brojOsoba" type="xs:int"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="slika" type="xs:string"/>
+            <xs:element name="opis" type="xs:string"/>
+            <xs:element name="planCena" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Koordinate">
+        <xs:sequence>
+            <xs:element name="stepeni" type="xs:int"/>
+            <xs:element name="minuti" type="xs:int"/>
+            <xs:element name="sekunde" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Adresa">
+        <xs:sequence>
+            <xs:element name="Mesto" type="xs:string"/>
+            <xs:element minOccurs="1" name="broj" type="xs:int"/>
+            <xs:element name="postanskiBroj" type="xs:int"/>
+            <xs:element name="koordinate" type="Koordinate"/>
+            <xs:element name="Ulica" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType abstract="false" name="DodatneUsluge">
+        <xs:sequence>
+            <xs:element name="brojDanaDoOtkazivanja" type="xs:int"/>
+            <xs:element name="dorucak" type="xs:boolean"/>
+            <xs:element name="dozvoljeniKucniLjubimci" type="xs:boolean"/>
+            <xs:element name="TV" type="xs:boolean"/>
+            <xs:element name="WiFi" type="xs:boolean"/>
+            <xs:element name="Parking" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TtipSmestaja">
+        <xs:sequence>
+            <xs:element name="hotel" type="xs:boolean"/>
+            <xs:element name="bedBreakfast" type="xs:boolean"/>
+            <xs:element name="apartman" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Agent">
+        <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="prezime" type="xs:string"/>
+            <xs:element name="ime" type="xs:string"/>
+            <xs:element name="korisnickoIme" type="xs:string"/>
+            <xs:element name="lozinka" type="xs:string"/>
+            <xs:element name="adresa" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="listaSmestaja"
+                type="dodavanjeSmestaja"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
