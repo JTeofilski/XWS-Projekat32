@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:complexType name="TAgent">
+        <xs:sequence>
+            <xs:element name="Ime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="20"/>
+                        <xs:minLength value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Prezime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Adresa" type="TAdresa"/>
+            <xs:element name="Poslovni_maticni_broj" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="Mesto" type="xs:string"/>
+            <xs:element name="Postanski_broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="11000"/>
+                        <xs:maxInclusive value="40000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Ulica" type="xs:string"/>
+            <xs:element name="Broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Broj_stana">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Registracija_agenta">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Agent" type="TAgent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Odrzavanje_sifrarnika">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Smestaj" type="TSmestaj"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TSmestaj">
+        <xs:sequence>
+            <xs:element name="Tip_smestaja"/>
+            <xs:element name="Kategorija_smestaja"/>
+            <xs:element name="Dodatne_usluge"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Objavljivanje_komentara">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Korisnicki_komentar" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Korisnik">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Blokiranje"/>
+                <xs:element name="Aktiviranje"/>
+                <xs:element name="Uklanjanje"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
